@@ -11,7 +11,7 @@ class webserver::packetfilter(
 
 
     # IPv4 rules
-    firewall { "003 ipv4 accept http":
+    firewall { '003 ipv4 accept http':
         provider => 'iptables',
         chain  => 'INPUT',
         proto => 'tcp',
@@ -25,7 +25,7 @@ class webserver::packetfilter(
         action => 'accept',
     }
 
-    firewall { "004 ipv4 accept https":
+    firewall { '004 ipv4 accept https':
         provider => 'iptables',
         chain  => 'INPUT',
         proto => 'tcp',
@@ -38,7 +38,7 @@ class webserver::packetfilter(
     }
 
     # IPv6 rules
-    firewall { "003 ipv6 accept http":
+    firewall { '003 ipv6 accept http':
         provider => 'ip6tables',
         chain  => 'INPUT',
         proto => 'tcp',
@@ -50,7 +50,7 @@ class webserver::packetfilter(
         action => 'accept',
     }
 
-    firewall { "004 ipv6 accept https":
+    firewall { '004 ipv6 accept https':
         provider => 'ip6tables',
         chain  => 'INPUT',
         proto => 'tcp',
