@@ -24,11 +24,18 @@
 # BSD-license
 # See file LICENSE
 #
-class webserver
+class webserver(
+    $allow_address_ipv4 = 'any',
+    $allow_address_ipv6 = 'any'
+)
 {
+
     include webserver::config
 
     if tagged('packetfilter') {
-        include webserver::packetfilter
+        class { 'webserver::packetfilter':
+            allow_address_ipv4 => "$allow_address_ipv4",
+            allow_address_ipv6 => "$allow_address_ipv6",
+        }
     }
 }
