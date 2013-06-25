@@ -8,7 +8,12 @@
 #
 # == Parameters
 #
-# None at the moment
+# [*allow_address_ipv4*]
+#   IPv4 address/network from which to allow connections. Defaults to 'any' 
+#   which means that access is allowed from any IPv4 address.
+# [*allow_address_ipv6*]
+#   IPv6 address/network from which to allow connections. Defaults to 'any' 
+#   which means that access is allowed from any IPv6 address.
 #
 # == Examples
 #
