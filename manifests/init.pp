@@ -8,6 +8,8 @@
 #
 # == Parameters
 #
+# [*documentroot*]
+#   The webserver's document root directory. Defaults to '/var/www'.
 # [*allow_address_ipv4*]
 #   IPv4 address/network from which to allow connections. Defaults to 'any' 
 #   which means that access is allowed from any IPv4 address.
@@ -30,12 +32,15 @@
 # See file LICENSE
 #
 class webserver(
+    $documentroot = '/var/www',
     $allow_address_ipv4 = 'any',
     $allow_address_ipv6 = 'any'
 )
 {
 
-    include webserver::config
+    class { 'webserver::config':
+        documentroot => $documentroot,
+    }
 
     if tagged('packetfilter') {
         class { 'webserver::packetfilter':
