@@ -38,6 +38,9 @@ class webserver(
 )
 {
 
+# Rationale for this is explained in init.pp of the sshd module
+if hiera('manage_webserver') != 'false' {
+
     class { 'webserver::config':
         documentroot => $documentroot,
     }
@@ -48,4 +51,5 @@ class webserver(
             allow_address_ipv6 => "$allow_address_ipv6",
         }
     }
+}
 }
