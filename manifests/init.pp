@@ -39,7 +39,7 @@ class webserver(
 {
 
 # Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_webserver') != 'false' {
+if hiera('manage_webserver', 'true') != 'false' {
 
     class { 'webserver::config':
         documentroot => $documentroot,
