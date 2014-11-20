@@ -19,17 +19,17 @@
 #
 # == Examples
 #
-# include webserver
+#   include webserver
 # 
 # == Authors
 #
 # Samuli Seppänen <samuli.seppanen@gmail.com>
+#
 # Samuli Seppänen <samuli@openvpn.net>
 #
 # == License
 #
-# BSD-license
-# See file LICENSE
+# BSD-license. See file LICENSE for details.
 #
 class webserver(
     $documentroot = '/var/www',
