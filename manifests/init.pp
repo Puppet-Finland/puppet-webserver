@@ -8,6 +8,9 @@
 #
 # == Parameters
 #
+# [*manage*]
+#  Whether to manage generic webserver configuration with Puppet or not. Valid 
+#  values are 'yes' (default) and 'no'.
 # [*documentroot*]
 #   The webserver's document root directory. Defaults to '/var/www'.
 # [*allow_address_ipv4*]
@@ -31,24 +34,25 @@
 #
 # BSD-license. See file LICENSE for details.
 #
-class webserver(
+class webserver
+(
+    $manage = 'yes',
     $documentroot = '/var/www',
     $allow_address_ipv4 = 'any',
     $allow_address_ipv6 = 'any'
 )
 {
 
-# Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_webserver', 'true') != 'false' {
+if $manage == 'yes' {
 
-    class { 'webserver::config':
+    class { '::webserver::config':
         documentroot => $documentroot,
     }
 
     if tagged('packetfilter') {
-        class { 'webserver::packetfilter':
-            allow_address_ipv4 => "$allow_address_ipv4",
-            allow_address_ipv6 => "$allow_address_ipv6",
+        class { '::webserver::packetfilter':
+            allow_address_ipv4 => $allow_address_ipv4,
+            allow_address_ipv6 => $allow_address_ipv6,
         }
     }
 }
