@@ -6,7 +6,8 @@
 class webserver::config
 (
     $documentroot
-)
+
+) inherits webserver::params
 {
 
     # nginx does not create the document root directory by default, but Apache2 

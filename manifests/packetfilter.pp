@@ -7,7 +7,8 @@ class webserver::packetfilter
 (
     $allow_address_ipv4,
     $allow_address_ipv6
-)
+
+) inherits webserver::params
 {
 
     $source_v4 = $allow_address_ipv4 ? {
