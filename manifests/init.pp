@@ -14,11 +14,11 @@
 # [*documentroot*]
 #   The webserver's document root directory. Defaults to '/var/www'.
 # [*allow_address_ipv4*]
-#   IPv4 address/network from which to allow connections. Defaults to 'any' 
-#   which means that access is allowed from any IPv4 address.
+#   IPv4 addresses/networks from which to allow connections. This parameter can 
+#   be either a string or an array. Defaults to 'any' which means that access is 
+#   allowed from any IPv4 address.
 # [*allow_address_ipv6*]
-#   IPv6 address/network from which to allow connections. Defaults to 'any' 
-#   which means that access is allowed from any IPv6 address.
+#   As above but for IPv6 addresses.
 #
 # == Examples
 #
