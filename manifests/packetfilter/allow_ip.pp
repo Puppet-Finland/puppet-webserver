@@ -14,8 +14,8 @@ define webserver::packetfilter::allow_ip
     $allow_address = $title
 
     $source = $allow_address ? {
-        'any' => undef,
-        default => $allow_address,
+        /(any|anyv4|anyv6)/ => undef,
+        default         => $allow_address,
     }
 
     firewall { "003 accept http from ${allow_address}":

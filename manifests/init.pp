@@ -15,10 +15,11 @@
 #   The webserver's document root directory. Defaults to '/var/www'.
 # [*allow_address_ipv4*]
 #   IPv4 addresses/networks from which to allow connections. This parameter can 
-#   be either a string or an array. Defaults to 'any' which means that access is 
+#   be either a string or an array. Defaults to 'anyv4' which means that access is 
 #   allowed from any IPv4 address.
 # [*allow_address_ipv6*]
-#   As above but for IPv6 addresses.
+#   As above but for IPv6 addresses. Defaults to 'anyv6', thus allowing access 
+#   from any IPv6 address.
 #
 # == Examples
 #
@@ -38,8 +39,8 @@ class webserver
 (
     $manage = 'yes',
     $documentroot = '/var/www',
-    $allow_address_ipv4 = 'any',
-    $allow_address_ipv6 = 'any'
+    $allow_address_ipv4 = 'anyv4',
+    $allow_address_ipv6 = 'anyv6'
 )
 {
 
