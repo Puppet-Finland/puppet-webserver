@@ -10,9 +10,7 @@
 #
 # [*manage*]
 #  Whether to manage generic webserver configuration with Puppet or not. Valid 
-#  values are 'yes' (default) and 'no'.
-# [*documentroot*]
-#   The webserver's document root directory. Defaults to '/var/www'.
+#  values are true (default) and false.
 # [*allow_address_ipv4*]
 #   IPv4 addresses/networks from which to allow connections. This parameter can 
 #   be either a string or an array. Defaults to 'anyv4' which means that access is 
@@ -23,7 +21,7 @@
 #
 # == Examples
 #
-#   include webserver
+#   include ::webserver
 # 
 # == Authors
 #
@@ -37,18 +35,15 @@
 #
 class webserver
 (
-    $manage = 'yes',
-    $documentroot = '/var/www',
+    $manage = true,
     $allow_address_ipv4 = 'anyv4',
     $allow_address_ipv6 = 'anyv6'
 )
 {
 
-if $manage == 'yes' {
+validate_bool($manage)
 
-    class { '::webserver::config':
-        documentroot => $documentroot,
-    }
+if $manage {
 
     if tagged('packetfilter') {
         class { '::webserver::packetfilter':
