@@ -9,8 +9,10 @@
 # == Parameters
 #
 # [*manage*]
-#  Whether to manage generic webserver configuration with Puppet or not. Valid 
-#  values are true (default) and false.
+#  Manage generic webserver configuration with Puppet or not. Valid values are 
+#  true (default) and false.
+# [*manage_packetfilter*]
+#  Manage packet filtering rules. Valid values are true (default) and false.
 # [*allow_address_ipv4*]
 #   IPv4 addresses/networks from which to allow connections. This parameter can 
 #   be either a string or an array. Defaults to 'anyv4' which means that access is 
@@ -35,17 +37,16 @@
 #
 class webserver
 (
-    $manage = true,
-    $allow_address_ipv4 = 'anyv4',
-    $allow_address_ipv6 = 'anyv6'
+    Boolean $manage = true,
+    Boolean $manage_packetfilter = true,
+            $allow_address_ipv4 = 'anyv4',
+            $allow_address_ipv6 = 'anyv6'
 )
 {
 
-validate_bool($manage)
-
 if $manage {
 
-    if tagged('packetfilter') {
+    if $manage_packetfilter {
         class { '::webserver::packetfilter':
             allow_address_ipv4 => $allow_address_ipv4,
             allow_address_ipv6 => $allow_address_ipv6,

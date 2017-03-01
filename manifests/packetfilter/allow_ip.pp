@@ -18,21 +18,23 @@ define webserver::packetfilter::allow_ip
         default         => $allow_address,
     }
 
-    firewall { "003 accept http from ${allow_address}":
+    @firewall { "003 accept http from ${allow_address}":
         provider => $provider,
         chain    => 'INPUT',
         proto    => 'tcp',
         source   => $source,
         dport    => 80,
         action   => 'accept',
+        tag      => 'default',
     }
 
-    firewall { "004 accept https from ${allow_address}":
+    @firewall { "004 accept https from ${allow_address}":
         provider => $provider,
         chain    => 'INPUT',
         proto    => 'tcp',
         source   => $source,
         dport    => 443,
         action   => 'accept',
+        tag      => 'default',
     }
 }
