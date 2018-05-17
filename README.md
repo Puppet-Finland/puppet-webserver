@@ -1,22 +1,30 @@
 # webserver
 
-A generic webserver module for Puppet included by more specific modules (e.g. apache2, nginx)
+A generic webserver module for Puppet. Can be used to manage IPv4 and IPv6
+firewall rules for webservers on Linux either directly, or from other modules
+such as
+[puppetfinland/apache2](https://github.com/Puppet-Finland/puppet-apache2] or
+[puppetfinland/nginx](https://github.com/Puppet-Finland/puppet-nginx].
 
 # Module usage
 
-* [Class: webserver](manifests/init.pp)
+Allow access to ports 80 and 443 from any IPv4 or IPv6 address:
 
-# Dependencies
+    include ::webserver
 
-See [metadata.json](metadata.json).
+Or more explicitly:
 
-# Operating system support
+    class { '::webserver':
+      allow_address_ipv4 => 'anyv4',
+      allow_address_ipv6 => 'anyv6',
+    }
 
-This module has been tested on
+Prevent IPv6 access but allow connections via IPv4 from an intranet:
 
-* Ubuntu 12.04 and 14.04
-* Debian 7
+    class { '::webserver':
+      allow_address_ipv4 => '10.0.0.0/8',
+      allow_address_ipv6 => '::1',
+    }
 
-Any Linux distribution should work with small modifications (if any).
+For details see [init.pp](manifests/init.pp).
 
-For details see [params.pp](manifests/params.pp).
