@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-webserver",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Puppet-Finland team",
   "summary": "Setup IPv4 and IPv6 packet filtering rules for web servers",
   "license": "BSD-2-Clause",
